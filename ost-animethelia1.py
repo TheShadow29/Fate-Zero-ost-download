@@ -6,8 +6,9 @@ from bs4 import BeautifulSoup
 from urllib import urlretrieve
 from urllib2 import urlopen
 from os.path import exists, isfile
-
+import os
 from os import makedirs
+
 #############################
 #using mechanize
 
@@ -25,16 +26,24 @@ br.set_handle_refresh(False)
 br.addheaders = [('User-agent', 'Firefox')]
 
 #br.open(url)
-r = br.open('http://downloads.khinsider.com/game-soundtracks/album/code-geass-ost-2')
-l2 = list(br.links(text='Download'))
+url1 = raw_input('Enter the link of the website: ')
+r = br.open(url1)
+l2 = list(br.links())
 #l1 = list(br.find_link(text='Download'))
-
-for l in l2:
+x=int(raw_input('No. of tracks in the list: '))
+x*=-1
+l3 = l2[x:]
+start=int(raw_input('Starting no. of the track: '))
+end=int(raw_input('Ending no. of the track: '))
+for l in l3[start-1:end]:
 	br.follow_link(l)
-	l3 = br.find_link(text='Click here to download')
+	l3 = br.find_link(text='Download to Computer')
 	x1 = (str(l3.url)).rfind('/')
 	filename = str(l3.url)[x1+1:]
-	br.retrieve(l3.url,filename)
+	filename1 = filename.replace('%20',' ')
+	filename2 = filename1.replace('%2C',',')
+	if os.path.isfile(filename2)==False:
+		br.retrieve(l3.url,filename2)
 
 #br.follow_link(l1)
 
