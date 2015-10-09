@@ -1,3 +1,4 @@
-# Fate-Zero-ost-download
-
-Python script file to download fate zero ost from http://downloads.khinsider.com/game-soundtracks/album/fate-zero-ost
+#Ost-downloader
+Some sites do not have the option for mass download, hence I made a script file. <br />
+For anime-thelia, use ost-animethelia1.py <br />
+For khinsider.com, use ost.py <br />
