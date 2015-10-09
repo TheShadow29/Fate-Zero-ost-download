@@ -25,11 +25,13 @@ br.set_handle_refresh(False)
 br.addheaders = [('User-agent', 'Firefox')]
 
 #br.open(url)
-r = br.open('http://downloads.khinsider.com/game-soundtracks/album/code-geass-ost-2')
+url1 = raw_input('Enter the url: ')
+r = br.open(url1)
 l2 = list(br.links(text='Download'))
 #l1 = list(br.find_link(text='Download'))
-
-for l in l2:
+start=int(raw_input('Starting no. of the track: '))
+end=int(raw_input('Ending no. of the track: '))
+for l in l2[start-1:end]:
 	br.follow_link(l)
 	l3 = br.find_link(text='Click here to download')
 	x1 = (str(l3.url)).rfind('/')
